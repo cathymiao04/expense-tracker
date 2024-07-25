@@ -4,6 +4,7 @@ import { Expenses, Budgets } from "../../../../../utils/schema";
 import { Input } from "../../../../../components/ui/input";
 import { Button } from "../../../../../components/ui/button";
 import { toast } from "sonner";
+import moment from 'moment';
 
 function CreateExpense({ budgetId, user, refreshData }) {
 
@@ -15,7 +16,7 @@ function CreateExpense({ budgetId, user, refreshData }) {
       name: name,
       amount: amount,
       budgetId: budgetId,
-      createdAt: user?.primaryEmailAddress?.emailAddress
+      createdAt: moment().format('DD/MM/yyyy')
     }).returning({ insertedId: Budgets.id });
 
     console.log(result);

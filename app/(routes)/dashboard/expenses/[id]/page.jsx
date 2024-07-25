@@ -4,14 +4,16 @@ import React, { useEffect, useState } from 'react'
 import { useUser } from "@clerk/nextjs"
 import { db } from "../../../../../utils/dbConfig";
 import { Budgets, Expenses } from "../../../../../utils/schema";
-import { getTableColumns, eq, sql } from 'drizzle-orm';
+import { getTableColumns, eq, sql, desc } from 'drizzle-orm';
 import BudgetItem from "../../budgets/_components/BudgetItem";
 import CreateExpense from '../_components/CreateExpense';
+import ExpenseListTable from './../_components/ExpenseListTable'
 
 function ExpensesPage({ params }) {
 
   const { user } = useUser();
   const [budgetInfo, setBudgetInfo] = useState();
+  const [expensesList, setExpensesList] = useState([]);
 
   useEffect(() => {
     user && getBudgetInfo();
@@ -29,8 +31,16 @@ function ExpensesPage({ params }) {
       .groupBy(Budgets.id)
 
     setBudgetInfo(result[0]);
+    getExpensesList();
+  }
 
+  const getExpensesList = async () => {
+    const result = await db.select().from(Expenses)
+      .where(eq(Expenses.budgetId, params.id))
+      .orderBy(desc(Expenses.id));
+    setExpensesList(result);
 
+    console.log(result)
   }
 
   return (
@@ -45,6 +55,11 @@ function ExpensesPage({ params }) {
         }
         <CreateExpense budgetId={params.id}
           user={user}
+          refreshData={() => getBudgetInfo()} />
+      </div>
+      <div className='mt-4'>
+        <h2 className='font-bold text-lg'>Latest Expenses</h2>
+        <ExpenseListTable expensesList={expensesList}
           refreshData={() => getBudgetInfo()} />
       </div>
     </div>
