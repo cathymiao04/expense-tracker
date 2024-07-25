@@ -26,17 +26,25 @@ function BudgetList() {
     }).from(Budgets)
       .leftJoin(Expenses, eq(Budgets.id, Expenses.budgetId))
       .where(eq(Budgets.createdBy, user.primaryEmailAddress?.emailAddress))
-      .groupBy(Budgets.id);
+      .groupBy(Budgets.id)
+      .orderBy(desc(Budgets.id))
 
     setBudgetList(result);
   }
   return (
     <div className='mt-7'>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-        <CreateBudget />
-        {budgetList.map((budget, index) => (
+        <CreateBudget
+          refreshData={() => getBudgetList()} />
+        {budgetList?.length > 0 ? budgetList.map((budget, index) => (
           <BudgetItem budget={budget} />
-        ))}
+        ))
+          : [1, 2, 3, 4, 5].map((item, index) => (
+            <div key={index} className='w-full bg-slate-200 rounded-lg 
+            h-[150px] animate-pulse'>
+            </div>
+          ))
+        }
       </div>
     </div>
   )
