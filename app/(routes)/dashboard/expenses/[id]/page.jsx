@@ -120,7 +120,6 @@ function ExpensesPage({ params }) {
           refreshData={() => getBudgetInfo()} />
       </div>
       <div className='mt-4'>
-        <h2 className='font-bold text-lg'>Latest Expenses</h2>
         <ExpenseListTable expensesList={expensesList}
           refreshData={() => getBudgetInfo()} />
       </div>
