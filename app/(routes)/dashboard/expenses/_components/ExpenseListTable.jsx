@@ -1,9 +1,11 @@
 import React from 'react'
-import { Trash } from 'lucide-react'
+
 import { db } from "../../../../../utils/dbConfig";
 import { Expenses } from "../../../../../utils/schema";
 import { eq } from 'drizzle-orm';
 import { toast } from "sonner";
+
+import { Trash } from 'lucide-react'
 
 function ExpenseListTable({ expensesList, refreshData }) {
 
