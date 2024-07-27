@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+
 import { PiggyBank, ReceiptText, Wallet } from 'lucide-react'
 
 function CardInfo({ budgetList }) {
@@ -21,8 +22,6 @@ function CardInfo({ budgetList }) {
 
     setTotalBudget(totalBudget_);
     setTotalSpend(totalSpend_);
-
-    console.log(totalBudget_, totalSpend_);
   }
 
   return (
@@ -31,26 +30,26 @@ function CardInfo({ budgetList }) {
 
         <div className='p-7 border rounded-lg flex items-center justify-between'>
           <div>
-            <h2 className='text-sm'>Total Budget</h2>
+            <h2 className='font-bold text-sm'>Total Budget</h2>
             <h2 className='font-bold text-2xl'>${totalBudget}</h2>
           </div>
-          <PiggyBank className='bg-primary p-3 h-12 w-12 rounded-full text-white' />
+          <PiggyBank className='bg-blue-700 p-3 h-12 w-12 rounded-full text-white' />
         </div>
 
         <div className='p-7 border rounded-lg flex items-center justify-between'>
           <div>
-            <h2 className='text-sm'>Total Spent</h2>
+            <h2 className='font-bold text-sm'>Total Spent</h2>
             <h2 className='font-bold text-2xl'>${totalSpend}</h2>
           </div>
-          <ReceiptText className='bg-primary p-3 h-12 w-12 rounded-full text-white' />
+          <ReceiptText className='bg-blue-700 p-3 h-12 w-12 rounded-full text-white' />
         </div>
 
         <div className='p-7 border rounded-lg flex items-center justify-between'>
           <div>
-            <h2 className='text-sm'>No. of Budgets</h2>
+            <h2 className='font-bold text-sm'>No. of Budgets</h2>
             <h2 className='font-bold text-2xl'>{budgetList?.length}</h2>
           </div>
-          <Wallet className='bg-primary p-3 h-12 w-12 rounded-full text-white' />
+          <Wallet className='bg-blue-700 p-3 h-12 w-12 rounded-full text-white' />
         </div>
       </div>
         :
