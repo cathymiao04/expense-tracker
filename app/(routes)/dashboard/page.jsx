@@ -18,6 +18,7 @@ function Dashboard() {
 
   const [budgetList, setBudgetList] = useState([]);
   const [expensesList, setExpensesList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     user && getBudgetList();
@@ -51,15 +52,17 @@ function Dashboard() {
       .orderBy(desc(Expenses.id));
 
     setExpensesList(result);
+    setLoading(false);
   }
 
   return (
     <div className='p-8'>
-      <h2 className='font-bold text-3xl'>Hi, {user?.fullName} </h2>
-      <p className='text-gray-500'>Here's what's happening with your money. Let's manage your expenses.</p>
+      <h2 className='font-bold text-2xl mb-4'>Welcome, {user?.fullName}! </h2>
+      <p className='text-gray-500'>Here's an overview of your finances. Let's manage your budgets and expenses.</p>
 
       <CardInfo budgetList={budgetList} />
       <div className='grid grid-cols-1 md:grid-cols-3 mt-6 gap-5'>
+
         <div className='md: col-span-2'>
           <BarChartDashboard
             budgetList={budgetList}
@@ -69,15 +72,15 @@ function Dashboard() {
             expensesList={expensesList}
             refreshData={() => getBudgetList()}
           />
-
         </div>
+
         <div className='grid gap-5'>
           <h2 className='font-bold text-lg'>Latest Budgets</h2>
           {budgetList.map((budget, index) => (
             <BudgetItem budget={budget} key={index} />
           ))}
-
         </div>
+
       </div>
     </div>
   )
