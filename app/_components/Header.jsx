@@ -1,15 +1,23 @@
 "use client"
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from "next/image";
 import { useUser, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 
-import { Button } from "../../components/ui/button"
+import { Button } from "../../components/ui/button";
+import { Loader } from "lucide-react";
 
 function Header() {
 
-  const { user, isSignedIn } = useUser();
+  const { isSignedIn, isLoaded } = useUser();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (isLoaded) {
+      setLoading(false);
+    }
+  }, [isLoaded]);
 
   return (
     <div className='p-5 flex justify-between items-center border-b shadow-sm'>
@@ -23,16 +31,21 @@ function Header() {
       />
 
       <div className='flex items-center space-x-4'>
-        {isSignedIn ?
-          <UserButton /> :
-          <Link href={'/sign-in'}>
-            <Button className='bg-primary text-white hover:bg-blue-700 focus:outline-none focus:ring'>
-              Get Started
-            </Button>
-          </Link>
-        }
+        {
+          loading ?
+            (<Loader className="animate-spin" size={24} />)
+            :
+            (
+              isSignedIn ?
+                (<UserButton />)
+                :
+                (
+                  <Link href={'/sign-in'}>
+                    <Button>Get Started</Button>
+                  </Link>
+                )
+            )}
       </div>
-
     </div>
   )
 }
