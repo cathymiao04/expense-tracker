@@ -9,7 +9,7 @@ import { Budgets } from '../../../utils/schema'
 import { eq } from 'drizzle-orm'
 
 import SideNav from "./_components/SideNav";
-import DashboardHeader from "./_components/DashBoardHeader";
+import DashboardHeader from "./_components/DashboardHeader";
 import { Menu, X } from "lucide-react";
 
 function DashboardLayout({ children }) {
