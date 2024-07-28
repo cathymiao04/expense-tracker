@@ -6,7 +6,7 @@ import { UserButton } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-import { LayoutGrid, PiggyBank, ReceiptText } from 'lucide-react'
+import { LayoutGrid, PiggyBank, ReceiptText, ChartBar } from 'lucide-react'
 
 function SideNav() {
 
@@ -31,6 +31,12 @@ function SideNav() {
       name: 'Expenses',
       icon: ReceiptText,
       path: '/dashboard/expenses'
+    },
+    {
+      id: 4,
+      name: 'Visualizations',
+      icon: ChartBar,
+      path: '/dashboard/visualize'
     },
   ];
 
