@@ -64,7 +64,8 @@ function CreateBudget({ refreshData }) {
                 <Button variant='outline'
                   className='text-lg'
                   onClick={() => setOpenEmojiPicker(!openEmojiPicker)}
-                >{emojiIcon}</Button>
+                >{emojiIcon}
+                </Button>
                 <div className='absolute z-20'>
                   <EmojiPicker
                     open={openEmojiPicker}
@@ -76,7 +77,7 @@ function CreateBudget({ refreshData }) {
                 </div>
                 <div className='mt-2'>
                   <h2 className='text-black font-medium my-1'>Budget Name</h2>
-                  <Input placeholder='e.g. Home Decor'
+                  <Input placeholder='e.g. Vacation Fund'
                     onChange={(e) => setName(e.target.value)} />
                 </div>
 
@@ -84,7 +85,7 @@ function CreateBudget({ refreshData }) {
                   <h2 className='text-black font-medium my-1'>Budget Amount</h2>
                   <Input
                     type='number'
-                    placeholder='e.g. $5000'
+                    placeholder='e.g. 5000'
                     onChange={(e) => setAmount(e.target.value)} />
                 </div>
 

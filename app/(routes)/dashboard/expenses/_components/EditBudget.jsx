@@ -65,10 +65,12 @@ function EditBudget({ budgetInfo, refreshData }) {
             <DialogTitle>Update Budget</DialogTitle>
             <DialogDescription>
               <div className='mt-5'>
-                <Button variant='outline'
+                <Button
+                  variant='outline'
                   className='text-lg'
                   onClick={() => setOpenEmojiPicker(!openEmojiPicker)}
-                >{emojiIcon}</Button>
+                >{emojiIcon}
+                </Button>
                 <div className='absolute z-20'>
                   <EmojiPicker
                     open={openEmojiPicker}
@@ -78,9 +80,10 @@ function EditBudget({ budgetInfo, refreshData }) {
                     }}
                   />
                 </div>
+
                 <div className='mt-2'>
                   <h2 className='text-black font-medium my-1'>Budget Name</h2>
-                  <Input placeholder='e.g. Home Decor'
+                  <Input placeholder='e.g. Vacation Fund'
                     defaultValue={budgetInfo?.name}
                     onChange={(e) => setName(e.target.value)} />
                 </div>
@@ -90,14 +93,15 @@ function EditBudget({ budgetInfo, refreshData }) {
                   <Input
                     type='number'
                     defaultValue={budgetInfo?.amount}
-                    placeholder='e.g. $5000'
+                    placeholder='e.g. 5000'
                     onChange={(e) => setAmount(e.target.value)} />
                 </div>
 
                 <Button
                   disabled={!(name && amount)}
                   onClick={() => onUpdateBudget()}
-                  className='mt-5 w-full'>Update Budget</Button>
+                  className='mt-5 w-full hover:bg-blue-500'>Update Budget
+                </Button>
               </div>
             </DialogDescription>
           </DialogHeader>

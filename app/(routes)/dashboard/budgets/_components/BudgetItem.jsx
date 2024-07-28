@@ -8,6 +8,17 @@ function BudgetItem({ budget }) {
     return percent.toFixed(2);
   }
 
+  const getProgressColor = () => {
+    if (calculateProgressPercent() <= 50) {
+      return 'bg-green-500';
+    }
+    else if (calculateProgressPercent() <= 75) {
+      return 'bg-yellow-500';
+    } else {
+      return 'bg-red-500';
+    }
+  }
+
   return (
     <Link href={'/dashboard/expenses/' + budget?.id}>
       <div className='p-5 border rounded-lg hover:shadow-md cursor-pointer h-[170px]'>
@@ -18,7 +29,7 @@ function BudgetItem({ budget }) {
             </h2>
             <div>
               <h2 className='font-bold'>{budget.name}</h2>
-              <h2 className='text-sm text-gray'>{budget.totalItem} Item</h2>
+              <h2 className='text-sm text-gray-500'>{budget.totalItem} Item{budget.totalItem !== 1 ? 's' : ''}</h2>
             </div>
           </div>
           <h2 className='font-bold text-primary text-lg'>${budget.amount}</h2>
@@ -31,7 +42,7 @@ function BudgetItem({ budget }) {
           </div>
 
           <div className='w-full bg-slate-300 h-2 rounded-full'>
-            <div className='bg-primary h-2 rounded-full'
+            <div className={`h-2 rounded-full ${getProgressColor()}`}
               style={{
                 width: `${calculateProgressPercent()}%`
               }}>

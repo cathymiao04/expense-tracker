@@ -23,7 +23,7 @@ function CreateExpense({ budgetId, user, refreshData }) {
       name: name,
       amount: amount,
       budgetId: budgetId,
-      createdAt: moment().format('DD/MM/yyyy')
+      createdAt: moment().format('YYYY-MM-DD')
     }).returning({ insertedId: Budgets.id });
 
     setAmount('');
@@ -42,14 +42,17 @@ function CreateExpense({ budgetId, user, refreshData }) {
 
       <div className='mt-2'>
         <h2 className='text-black font-medium my-1'>Expense Name</h2>
-        <Input placeholder='e.g. Bedroom Decor'
+        <Input
+          placeholder='e.g. Spain Trip'
           value={name}
           onChange={(e) => setName(e.target.value)} />
       </div>
 
       <div className='mt-2'>
         <h2 className='text-black font-medium my-1'>Expense Amount</h2>
-        <Input placeholder='e.g. 1000'
+        <Input
+          type='number'
+          placeholder='e.g. 1000'
           value={amount}
           onChange={(e) => setAmount(e.target.value)} />
       </div>

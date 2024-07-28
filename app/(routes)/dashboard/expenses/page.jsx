@@ -35,7 +35,10 @@ function ExpensesMainPage() {
 
   return (
     <div className='p-8'>
-      <h1 className='text-2xl font-bold mb-6'>My Expenses</h1>
+      <h1 className='text-3xl font-bold mb-4'>My Expenses</h1>
+      <p className='text-gray-500'>
+        Track and manage your expenses efficiently. Review your spending, update records, and keep a detailed log of your financial activities to stay on top of your budget.
+      </p>
       <ExpenseListTable
         expensesList={expensesList}
         refreshData={() => getAllExpenses()}

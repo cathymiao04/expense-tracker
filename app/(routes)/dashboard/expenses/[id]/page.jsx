@@ -7,13 +7,13 @@ import { useRouter } from "next/navigation"
 import { db } from "../../../../../utils/dbConfig";
 import { Budgets, Expenses } from "../../../../../utils/schema";
 import { getTableColumns, eq, sql, desc } from 'drizzle-orm';
+
 import BudgetItem from "../../budgets/_components/BudgetItem";
 import CreateExpense from "../_components/CreateExpense";
 import ExpenseListTable from "./../_components/ExpenseListTable";
 import EditBudget from "./../_components/EditBudget"
-
 import { Button } from "../../../../../components/ui/button";
-import { PenBox, Trash } from 'lucide-react'
+import { Trash } from 'lucide-react'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -58,8 +58,6 @@ function ExpensesPage({ params }) {
       .where(eq(Expenses.budgetId, params.id))
       .orderBy(desc(Expenses.id));
     setExpensesList(result);
-
-    console.log(result)
   }
 
   const deleteBudget = async () => {
@@ -101,7 +99,11 @@ function ExpensesPage({ params }) {
               </AlertDialogHeader>
               <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction onClick={() => deleteBudget()}>Continue</AlertDialogAction>
+                <AlertDialogAction asChild>
+                  <Button onClick={() => deleteBudget()} className="bg-red-500 hover:bg-red-600 text-white transition">
+                    Continue
+                  </Button>
+                </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
